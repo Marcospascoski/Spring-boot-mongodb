@@ -1,5 +1,6 @@
 package com.marcospascoski.workshopmongo.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,5 +25,10 @@ public class PostService {
 	public List<Post> findbyTitulo(String texto){
 		//return repo.findByTituloContainingIgnoreCase(texto);
 		return repo.pesquisaTitulo(texto);
+	}
+	
+	public List<Post> pesquisaCompleta(String texto, Date minData, Date maxData){
+		maxData = new Date(maxData.getTime() + 24 * 60 * 60 * 1000);
+		return repo.pesquisaCompleta(texto, minData, maxData);
 	}
 }
